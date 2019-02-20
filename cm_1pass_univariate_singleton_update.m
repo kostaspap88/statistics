@@ -9,7 +9,7 @@
 %current data length and the current mean
 %Output: the updated central moments, updated length, updated mean
 
-function [upd_cm,upd_mu,upd_length] = cm_1pass_singleton_update(singleton,order,current_cm,current_mu,current_length)
+function [upd_cm,upd_mu,upd_length] = cm_1pass_univariate_singleton_update(singleton,order,current_cm,current_mu,current_length)
 
 
 %init updated central moments

@@ -1,9 +1,9 @@
-%Initialize the 1 pass singleton variables. See formula (3.7)
+%Initialize the univariate 1 pass singleton variables. See Pebay formula (3.7)
 
-%Input: None
+%Input: first trace, order
 %Outpt: the first central moments, first mu, first length
 
-function [first_cm, first_mu, first_length] = cm_1pass_singleton_initialize(first_singleton,order)
+function [first_cm, first_mu, first_length] = cm_1pass_univariate_singleton_initialize(first_singleton,order)
 
 %init central moments
 first_cm=cell(1,order);

@@ -1,9 +1,9 @@
-%Data wrapper around the singleton 1 pass formula
+%Data wrapper around the univariate singleton 1 pass formula
 
-function [cm, mu] = cm_1pass_singleton(data,order)
+function [cm, mu] = cm_1pass_univariate_singleton(data,order)
 
 %first, initialize using the first data element data(1)
-[cm_1psingle,mu_1psingle,len_1psingle] = cm_1pass_singleton_initialize(data(1),order);
+[cm_1psingle,mu_1psingle,len_1psingle] = cm_1pass_univariate_singleton_initialize(data(1),order);
 
 n=length(data);
 
@@ -13,7 +13,7 @@ n=length(data);
 %formulas where any new incoming data requires us to pass again
 for i=2:n
     %perform incremental update on cm,mu,len using every singleton
-    [cm_1psingle,mu_1psingle,len_1psingle] = cm_1pass_singleton_update(data(i),order,cm_1psingle,mu_1psingle,len_1psingle);
+    [cm_1psingle,mu_1psingle,len_1psingle] = cm_1pass_univariate_singleton_update(data(i),order,cm_1psingle,mu_1psingle,len_1psingle);
 end
 
 %finally, compute moment instead of sum
