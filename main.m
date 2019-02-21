@@ -51,16 +51,16 @@ toc
 %TESTING MULTIVARIATE CENTRAL MOMENTS--------------------------------------
     
 %multivariate dataset simulation with POIs
-data_mv=normrnd(9,2,50,2);
+data_mv=normrnd(9,2,50,3);
 
 %specify central moments order
-order_mv=4;
+order_mv=3;
 
 %test the multivariate singleton 1 pass formula (serialized by construction)
 [cm_mv_1psingle, mu_mv_1psingle]=cm_1pass_multivariate_singleton(data_mv,order_mv);
 
 %test the naive multivariate 2 pass formula - just for reference
-order_mv=2;
+order_mv=3;
 [cm_mv_2pnaive, mu_mv_2pnaive]=cm_2pass_multivariate_naive(data_mv,order_mv);
 
 
@@ -99,7 +99,7 @@ chosen_univ_cm_method = @cm_1pass_univariate_singleton;
 
 %TESTING MULTIVARIATE T-TEST ----------------------------------------------
 
-no_traces=100;
+no_traces=50;
 no_values=4;
 
 %value simulation
@@ -128,10 +128,6 @@ alpha_mv = 0.00001;
 chosen_mv_cm_method = @cm_1pass_multivariate_singleton;
 %then compute the higher order t test
 [tval_1p_mv, th_norm_1pmv, th_stu_1pmv, cm3, mu3, cm4, mu4]=ttest_ho_multivariate(data3, data4, tt_order_mv, chosen_mv_cm_method,alpha_mv);
-
-cvm3=cov(data3);
-cvm4=cov(data4);
-
 
 %--------------------------------------------------------------------------
 

@@ -21,13 +21,13 @@ nB=size(data2,1);
 no_samples = size(data1,2);
 
 %compute the multivariate moments 
-[cm_d1, mu_d1]=cm_method(data1,2*tt_order);
-[cm_d2, mu_d2]=cm_method(data2,2*tt_order);
+[cm_d1, mu_d1, ps_lut1]=cm_method(data1,2*tt_order);
+[cm_d2, mu_d2, ps_lut2]=cm_method(data2,2*tt_order);
 
-denominator_index1 = 1;
-denominator_index2 = 1;
-numerator_index1 = 2;
-numerator_index2 = 2;
+denominator_index1 = ps_lut1(mat2str(sort([1:no_samples 1:no_samples])));
+denominator_index2 = ps_lut2(mat2str(sort([1:no_samples 1:no_samples])));
+numerator_index1 = ps_lut1(mat2str(sort(1:no_samples)));
+numerator_index2 = ps_lut2(mat2str(sort(1:no_samples)));
 
 
 %t-test computation

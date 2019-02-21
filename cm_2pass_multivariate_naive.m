@@ -1,6 +1,6 @@
 
 
-function [cm, mu, numerator_index, denominator_index] = cm_2pass_multivariate_naive(data,order)
+function [cm, mu] = cm_2pass_multivariate_naive(data,order)
 
 no_poi = size(data,2);
 
@@ -9,7 +9,14 @@ no_poi = size(data,2);
 %multiset [1,2,...,noPOIs,1,2,...,noPOIs]. If neither holds then the
 %function stops.
 
+
+
 switch no_poi
+    case 1
+        fprintf ('Try the univariate formula!\n');
+        cm=[];
+        mu=[];
+        return   
     case order
         set_choice=0;
     case order/2
@@ -21,34 +28,41 @@ switch no_poi
         return
 end
 
+
+
+
+
 mu=mean(data);
 
-for i=1:order
-    for j=1:8 %FIX
-        cm{i,j}=0;
-    end
-end
 
+%naive loop
 for i=1:size(data,1)        
     for current_order=2:order
-        if(set_choice==0)
-            powerset=unique(sort(nchoosek(1:no_poi,current_order),2),'rows'); 
-        end
-        if(set_choice==1)
-            powerset=unique(sort(nchoosek([1:no_poi 1:no_poi],current_order),2),'rows'); 
-        end
+        
+    if(set_choice==0)
+        powerset=unique(sort(nchoosek(1:no_poi,current_order),2),'rows'); 
+    end
+    if(set_choice==1)
+        powerset=unique(sort(nchoosek([1:no_poi 1:no_poi],current_order),2),'rows'); 
+    end
+    
         for set_index=1:size(powerset,1)
             set=powerset(set_index,:);
-            cm{current_order,set_index}=cm{current_order,set_index} + prod(data(i,set)-mu(set));
+            if (i==1)
+                cm{current_order,set_index}=prod(data(i,set)-mu(set));
+            else
+                cm{current_order,set_index}=cm{current_order,set_index} + prod(data(i,set)-mu(set));
+            end
         end
 
     end
 end
 
+n=size(data,1);
 
-for i=1:order
-    for j=1:8
-        cm{i,j}=cm{i,j}/size(data,1);
+for i=2:order
+    for j=1:size(cm(i,:),2)
+        cm{i,j}=cm{i,j}/n;
     end
 end
 

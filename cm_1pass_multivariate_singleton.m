@@ -1,6 +1,6 @@
 %Data wrapper around the multivariate singleton 1 pass formula
 
-function [cm, mu] = cm_1pass_multivariate_singleton(data,order)
+function [cm, mu, ps_lut] = cm_1pass_multivariate_singleton(data,order)
 
 %number of POIs in dataset
 no_poi=size(data,2);
