@@ -7,7 +7,7 @@ Numerically stable higher-order statistics
 
 -Author: Kostas Papagiannopoulos
 
--If you use this, cite https://kpcrypto.net
+-If you use this, please cite https://kpcrypto.net
 
 -Contact: kostaspap88@gmail.com
 
