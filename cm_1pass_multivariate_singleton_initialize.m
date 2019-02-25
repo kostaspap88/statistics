@@ -6,7 +6,7 @@
 %[1,2,...,noPOIs,1,2,...,noPOIs], the powerset lookuptable for quicker
 %indexing by cm_1pass_multivariate_singleton_update function
 
-function [first_cm, first_mu, first_length, ps, ps_lut] = cm_1pass_multivariate_singleton_initialize(first_singleton,order,set_choice)
+function [first_cm, first_mu, first_length, ps, ps_lut,flat_lut] = cm_1pass_multivariate_singleton_initialize(first_singleton,order,set_choice)
 
 %number of POIs
 no_poi = length(first_singleton);
@@ -14,11 +14,16 @@ no_poi = length(first_singleton);
 %compute the first mean
 first_mu=first_singleton;
 
-%init the LUT
+%init the 2-d LUT
 ps_lut = containers.Map();
+
+%init the 1-d LUT
+flat_lut = containers.Map();
+flat_index = 1;
 
 %init the powerset
 ps=cell(1,order);
+
 
 %generate 1st-order powerset until current-order powerset
 for current_order=2:order
@@ -44,6 +49,8 @@ for current_order=2:order
         
         first_cm{current_order,index}=0;   
         ps_lut(mat2str(set(index,:)))=index;
+        flat_lut(mat2str(set(index,:))) = flat_index;
+        flat_index=flat_index+1;
         
     end
 end

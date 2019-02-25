@@ -23,10 +23,12 @@ switch no_poi
 end
 
 %first, initialize using the first data element data(1)
-[cm_1psingle,mu_1psingle,len_1psingle, powerset,ps_lut] = cm_1pass_multivariate_singleton_initialize(data(1,:),order,set_choice);
+[cm_1psingle,mu_1psingle,len_1psingle, powerset,ps_lut,flat_lut] = cm_1pass_multivariate_singleton_initialize(data(1,:),order,set_choice);
 
 %then create the formula and print it
-cm_1pass_multivariate_singleton_formula(order,powerset);
+cm_1pass_multivariate_singleton_formula_python(order,powerset,flat_lut,no_poi);
+%you can also create the mathematical formula
+%cm_1pass_multivariate_singleton_formula(order,powerset);
 
 %then iterate on dataset
 %note that the data length does not need to be known in advance 
