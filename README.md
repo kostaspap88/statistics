@@ -1,4 +1,4 @@
-# statistics
+# High Performance Statistics
 Numerically stable higher-order statistics
 
 -Matlab implementation
